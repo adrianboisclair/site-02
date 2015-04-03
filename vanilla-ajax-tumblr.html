@@ -55,9 +55,9 @@
             myDiv.innerHTML = '';
             for (i = 0; i < data.items.length; i++) {       //For-loop cycles thru each objects inner data.
                 console.log(data.items[i]);
-//                name = data.items[i];
-//                console.log(name);
-//                console.log('<img src="http:'+data.items[i]+'">');
+                name = data.items[i].author.displayName;
+                console.log(name);
+                myDiv.innerHTML += data.items[i].content ;
 //                myDiv.innerHTML += '<div class="blog-entry" id="blog-'+i+'">' + 'By: '  ;
             }
 
