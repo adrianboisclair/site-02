@@ -10,14 +10,14 @@
 <input type="button" value="Get Data!" onclick="getData()"/>
 
 <script type="text/javascript">
+    //This is literally as basic as I could possibly make this. -->
     function getData() {
         xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange =
                 function () {
-                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-                        var myArr = JSON.parse(xmlhttp.responseText);
-                        myFunction(myArr);
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {     //If response is Okay
+                        var myArr = JSON.parse(xmlhttp.responseText);           //Parse response to JSON data
+                        myFunction(myArr);                                      //Call Function to write to document
                     } else {
                         document.getElementById('myDiv').innerHTML = "<strong>Waiting for server response...</strong>";
                     }
@@ -25,15 +25,16 @@
         xmlhttp.open("GET", "https://graph.facebook.com/v2.2/boisclaircalifornia?fields=events{name,start_time,description,picture}&access_token=1564302737190303|4sZ6hvX3JTDNxCuILfKcDMuXm0M", true);
         xmlhttp.send();
         function myFunction(arr) {
+            var data = arr.events.data;     //Get data and turn it into an easier to use variable
             var i = 0;
             myDiv = document.getElementById("myDiv");
             myDiv.innerHTML = '';
-            for (i = 0; i < 6; i++) {
-                console.log(arr.events.data[i]);
-                myDiv.innerHTML += '<div><img src="' + arr.events.data[i].picture.data.url + '"></div>';
-                myDiv.innerHTML += '<div>' + arr.events.data[i].name + '</div>';
-                myDiv.innerHTML += '<div>' + arr.events.data[i].start_time + '</div>';
-                myDiv.innerHTML += '<div>' + arr.events.data[i].description + '</div>';
+            for (i = 0; i < 6; i++) {       //For-loop cycles thru each objects inner data.
+                myDiv.innerHTML += '<div><img src="' + data[i].picture.data.url + '"></div>';
+                myDiv.innerHTML += '<div>' + data[i].name + '</div>';
+                myDiv.innerHTML += '<div>' + data[i].start_time + '</div>';
+                myDiv.innerHTML += '<div>' + data[i].description + '</div>';
+                console.log(data[i]);
             }
         }
     }
