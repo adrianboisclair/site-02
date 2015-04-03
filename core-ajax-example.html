@@ -4,9 +4,9 @@
     <link rel="import" href="../bower_components/core-ajax/core-ajax.html">
     <style>
         /*body {*/
-            /*display: flex;*/
-            /*flex-wrap: wrap;*/
-            /*justify-content: space-around;*/
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+        /*justify-content: space-around;*/
 
         /*}*/
         .card {
@@ -24,40 +24,62 @@
             padding: .5em;
             align-content: center;
         }
+
         em {
             width: 300px;
             font-size: smaller;
         }
+
         .card img {
             display: flex;
         }
+
         #fb-post p {
             margin-left: 1em;
             margin-right: auto;
         }
-        #fb-post-0 {order:6}
-        #fb-post-1 {order:5}
-        #fb-post-2 {order:4}
-        #fb-post-3 {order:3}
-        #fb-post-4 {order:2}
-        #fb-post-5 {order:1}
+
+        #fb-post-0 {
+            order: 6
+        }
+
+        #fb-post-1 {
+            order: 5
+        }
+
+        #fb-post-2 {
+            order: 4
+        }
+
+        #fb-post-3 {
+            order: 3
+        }
+
+        #fb-post-4 {
+            order: 2
+        }
+
+        #fb-post-5 {
+            order: 1
+        }
     </style>
 </head>
 <body id="body">
-<core-ajax url="https://graph.facebook.com/v2.2/boisclaircalifornia?fields=events{name,start_time,description,picture}&access_token=1564302737190303|4sZ6hvX3JTDNxCuILfKcDMuXm0M"
-           handleAs="json"></core-ajax>
+<core-ajax
+        url="https://graph.facebook.com/v2.2/boisclaircalifornia?fields=events{name,start_time,description,picture}&access_token=1564302737190303|4sZ6hvX3JTDNxCuILfKcDMuXm0M"
+        handleAs="json"></core-ajax>
 <script>
-    window.addEventListener('polymer-ready', function(e) {
+    window.addEventListener('polymer-ready', function (e) {
         var ajax = document.querySelector('core-ajax');
-        ajax.addEventListener('core-response', function(e) {
-            console.log(this.response.events.data.length+' total objects returned');
+        ajax.addEventListener('core-response', function (e) {
+            console.log(this.response.events.data.length + ' total objects returned');
             for (i = 0; i < this.response.events.data.length; i++) {
                 var body = document.getElementById('body');
                 var description = this.response.events.data[i].description;
                 var image = this.response.events.data[i].picture.data.url;
                 var name = this.response.events.data[i].name;
                 var eventdate = this.response.events.data[i].start_time;
-                body.innerHTML += '<div class="card" id="fb-post-'+i+'"><img src="'+image+'"><h2>' + name + '</h2><em>Starts on:' + eventdate + '</em><p>'+ description + '</p></div>';
+                body.innerHTML += '<div class="card" id="fb-post-' + i + '"><img src="' + image + '"><h2>' + name + '</h2><em>Starts on:' + eventdate + '</em><p>' + description + '</p></div>';
                 console.log(this.response.events.data[i]);
                 console.log(this.response.events.data[i].description);
             }
