@@ -3,6 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>A most basic Vanilla JavaScript AJAX Call with a Server Response Printed</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .myDiv {
+            display: flex;
+            justify-content: center;
+            width: 75%;
+        }
+
+        .event {
+            width: 30em;
+            height: 10em;
+            margin: .5em;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+    </style>
 </head>
 <body>
 <div id="myDiv"></div>
@@ -30,10 +49,10 @@
             myDiv = document.getElementById("myDiv");
             myDiv.innerHTML = '';
             for (i = 0; i < 6; i++) {       //For-loop cycles thru each objects inner data.
-                myDiv.innerHTML += '<div><img src="' + data[i].picture.data.url + '"></div>';
-                myDiv.innerHTML += '<div>' + data[i].name + '</div>';
-                myDiv.innerHTML += '<div>' + data[i].start_time + '</div>';
-                myDiv.innerHTML += '<div>' + data[i].description + '</div>';
+                myDiv.innerHTML += '<article class="event" id="event-' + i + '">'
+                + '<div><img src="' + data[i].picture.data.url + '"></div>' +
+                '<div>' + data[i].name + '</div>' + '<div>' + data[i].start_time + '</div>'
+                + '<div>' + data[i].description + '</div>' + '</article>';
                 console.log(data[i]);
             }
         }
