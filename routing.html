@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 1. Load webcomponents.min.js for polyfill support. -->
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <!-- 2. Use an HTML Import to bring in the element. -->
+    <link rel="import" href="bower_components/core-scaffold/core-scaffold.html">
+    <link rel="import" href="bower_components/core-menu/core-menu.html">
+    <link rel="import" href="bower_components/core-item/core-item.html">
+    <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+    <link rel="import" href="bower_components/core-pages/core-pages.html">
+    <style>    </style>
+</head>
+<body unresolved>
+<template is="auto-binding" id="app">
+    <core-drawer-panel>
+        <core-header-panel drawer>
+            <core-toolbar>Menu</core-toolbar>
+            <core-menu selected="{{route}}" valueattr="data-route">
+
+                <core-item data-route="home">
+                    <a href="/">Home</a>
+                </core-item>
+                <core-item data-route="portfolio">
+                    <a href="/portfolio">Portfolio</a>
+                </core-item>
+                <core-item data-route="contact">
+                    <a href="/contact">Contact</a>
+                </core-item>
+            </core-menu>
+
+        </core-header-panel>
+        <core-header-panel main>
+            <core-toolbar>
+                <paper-icon-button icon="menu" core-drawer-toggle></paper-icon-button>
+                <div flex>My App</div>
+            </core-toolbar>
+            <div class="container" fit layout vertical>
+                <core-pages selected="{{route}}" valueattr="data-route">
+                    <section data-category="home">
+                        <h1>Home</h1>
+                        <div>Home Content</div>
+                    </section>
+                    <section data-category="portfolio">
+                        <h1>Page Two</h1>
+                        <div>Some more content will live here</div>
+                    </section>
+                    <section data-category="contact">
+                        <h1>Page Three</h1>
+                        <div>Some Content goes here</div>
+                    </section>
+                </core-pages>
+            </div>
+        </core-header-panel>
+    </core-drawer-panel>
+</template>
+
+<script src="bower_components/page.js"></script>
+<script src="assets/js/approuting.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "site-02",
+  "version": "0.0.0",
+  "authors": [
+    "Adrian Boisclair <adrianboisclair@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.5",
+    "page.js": "~1.6.1"
+  }
+}

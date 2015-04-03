@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- 1. Load webcomponents.min.js for polyfill support. -->
+    <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+    <!-- 2. Use an HTML Import to bring in the element. -->
+    <link rel="import"
+          href="../bower_components/core-ajax/core-ajax.html">
+</head>
+<body>
+<!-- 3. Declare the element. Configure using its attributes.
+Replace '//example.com/json' with valid json file -->
+<core-ajax url="https://www.googleapis.com/blogger/v3/blogs/7030204873015617672?key=AIzaSyDhWlM0FPbDaKtMbjL-mW8kfWsqZ5Mz6nE"
+           handleAs="json"></core-ajax>
+
+<script>
+    // Wait for 'polymer-ready'. Ensures the element is upgraded.
+    window.addEventListener('polymer-ready', function(e) {
+        var ajax = document.querySelector('core-ajax');
+
+        // Respond to events it fires.
+        ajax.addEventListener('core-response', function(e) {
+            console.log(this.response);
+            document.write('<ul><li>' + this.response.name + '</li>');
+            document.write('<li>' + this.response.published + '</li>');
+            document.write('</ul>')
+
+        });
+
+        ajax.go(); // Call its API methods.
+    });
+</script>
+</body>
+</html>
