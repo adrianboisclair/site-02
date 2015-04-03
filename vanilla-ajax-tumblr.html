@@ -45,20 +45,22 @@
                         document.getElementById('myDiv').innerHTML = "<strong>Waiting for server response...</strong>";
                     }
                 }
-        xmlhttp.open("GET", "https://graph.facebook.com/v2.2/boisclaircalifornia?fields=events{name,start_time,description,picture}&access_token=1564302737190303|4sZ6hvX3JTDNxCuILfKcDMuXm0M", true);
+        xmlhttp.open("GET", "https://www.googleapis.com/blogger/v3/blogs/7030204873015617672/posts?key=AIzaSyDhWlM0FPbDaKtMbjL-mW8kfWsqZ5Mz6nE", true);
         xmlhttp.send();
         function myFunction(arr) {
-            var data = arr.events.data;     //Get data and turn it into an easier to use variable
+            var data = arr;     //Get data and turn it into an easier to use variable
             var i = 0;
+            var name, blogImage, blogContent;
             myDiv = document.getElementById("myDiv");
             myDiv.innerHTML = '';
-            for (i = 0; i < 6; i++) {       //For-loop cycles thru each objects inner data.
-                myDiv.innerHTML += '<article class="event" id="event-' + i + '">'
-                + '<div><img src="' + data[i].picture.data.url + '"></div>' +
-                '<div>' + data[i].name + '</div>' + '<div>' + data[i].start_time + '</div>'
-                + '<div>' + data[i].description + '</div>' + '</article>';
-                console.log(data[i]);
+            for (i = 0; i < data.items.length; i++) {       //For-loop cycles thru each objects inner data.
+                console.log(data.items[i]);
+//                name = data.items[i];
+//                console.log(name);
+//                console.log('<img src="http:'+data.items[i]+'">');
+//                myDiv.innerHTML += '<div class="blog-entry" id="blog-'+i+'">' + 'By: '  ;
             }
+
         }
     }
 </script>
