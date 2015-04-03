@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>A most basic Vanilla JavaScript AJAX Call with a Server Response Printed</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: lightgray;
+        }
+
+        .myDiv {
+            display: flex;
+            justify-content: center;
+            width: 75%;
+        }
+
+        .event {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 29em;
+            height: 10em;
+            margin: .5em;
+            box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+        }
+        #myDiv {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            /*flex-flow: column;*/
+            height: 500px   ;
+            overflow: auto;
+        }
+        .blog-entry {
+            display: flex;
+            justify-content: space-between;
+            min-width: 20em;
+            max-width: 35em;
+            max-height: 30em;
+            min-height: 18em;
+            margin: .5em;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.0980392) 0 2px 4px, rgba(0, 0, 0, 0.0980392) 0 0 3px;
+            background-color: rgb(255, 255, 255);
+            flex-wrap: wrap;
+            padding: .5em;
+            align-content: center;
+            overflow: hidden;
+        }
+        .blog-entry img {
+            display: flex;
+            height: 100px;
+        }
+        .title {
+            font-size: 1.5em;
+        }
+        #datePosted {
+            font-size: smaller;
+            margin-top: .5em;
+            margin-bottom: .5em;
+        }
+        #name {
+            margin-top: .5em;
+            margin-bottom: .5em;
+        }
+    </style>
+</head>
+<body onload="getData()">
+<div id="myDiv"></div>
+<div id="response"></div>
+<!--<input type="button" value="Get Data!" onclick="getData()"/>-->
+
+<script type="text/javascript">
+    //This is literally as basic as I could possibly make this. -->
+    function getData() {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange =
+                function () {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {     //If response is Okay
+                        var myArr = JSON.parse(xmlhttp.responseText);           //Parse response to JSON data
+                        myFunction(myArr);                                      //Call Function to write to document
+                    } else {
+                        document.getElementById('myDiv').innerHTML = "<strong>Waiting for server response...</strong>";
+                    }
+                };
+        xmlhttp.open("GET", "https://www.googleapis.com/blogger/v3/blogs/7030204873015617672/posts?key=AIzaSyDhWlM0FPbDaKtMbjL-mW8kfWsqZ5Mz6nE", true);
+        xmlhttp.send();
+        function myFunction(arr) {
+            var i, data, name, title, content, date;
+            data = arr;
+            var myDiv = document.getElementById("myDiv");
+            myDiv.innerHTML = '';
+            for (i = 0; i < data.items.length; i++) {
+                console.log(data.items[i]);
+                name = data.items[i].author.displayName;
+                title = data.items[i].title;
+                content = data.items[i].content;
+                date = data.items[i].published;
+                myDiv.innerHTML += '<div class="blog-entry" id="blog-entry-'+i+'"><div class="title">'+title+'</div><div>'+content+'</div><div id="name">Posted By: '+name+'</div><div id="datePosted">'+date+'</div>';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
