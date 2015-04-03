@@ -9,17 +9,21 @@
     <link rel="import" href="bower_components/core-item/core-item.html">
     <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
     <link rel="import" href="bower_components/core-pages/core-pages.html">
+    <link rel="import" href="bower_components/core-ajax/core-ajax.html">
+    <link rel="import" href="facebook-events.html">
     <style>    </style>
 </head>
 <body unresolved>
+
+
 <template is="auto-binding" id="app">
     <core-drawer-panel>
         <core-header-panel drawer>
             <core-toolbar>Menu</core-toolbar>
             <core-menu selected="{{page}}" valueattr="data-category">
                 <core-item data-category="home" label="Home"></core-item>
-                <core-item data-category="portfolio" label="Portfolio"></core-item>
-                <core-item data-category="contact" label="Contact"></core-item>
+                <core-item data-category="portfolio" label="Events"></core-item>
+                <core-item data-category="contact" label="Photos"></core-item>
             </core-menu>
         </core-header-panel>
         <core-header-panel main>
@@ -32,11 +36,13 @@
                 <core-pages selected="{{page}}" valueattr="data-category">
                     <section data-category="home">
                         <h1>Home</h1>
-                        <div>Home Content</div>
+                        <div id="myDiv">Home Content</div>
                     </section>
                     <section data-category="portfolio">
-                        <h1>Page Two</h1>
-                        <div>Some more content will live here</div>
+                        <h1>Events</h1>
+                        <div>Some more content will live here
+                            <!--<facebook-events></facebook-events>-->
+                        </div>
                     </section>
                     <section data-category="contact">
                         <h1>Page Three</h1>
