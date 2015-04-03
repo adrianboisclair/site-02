@@ -24,10 +24,34 @@
             margin: .5em;
             box-shadow: 1px 1px 1px rgba(0,0,0,0.5);
         }
-        .event >
+        #myDiv {
+            display: flex;
+            flex-wrap: wrap;
+            width: 960px;
+            flex-flow: column;
+        }
+        .blog-entry {
+            display: flex;
+            justify-content: space-between;
+            min-width: 25em;
+            max-width: 30em;
+            max-height: 20em;
+            min-height: 10em;
+            margin: .5em;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.0980392) 0 2px 4px, rgba(0, 0, 0, 0.0980392) 0 0 3px;
+            background-color: rgb(255, 255, 255);
+            flex-wrap: wrap;
+            padding: .5em;
+            align-content: center;
+        }
+        .blog-entry img {
+            display: flex;
+            height: 100px;
+        }
     </style>
 </head>
-<body onload="getData()">
+<body>
 <div id="myDiv"></div>
 <div id="response"></div>
 <input type="button" value="Get Data!" onclick="getData()"/>
@@ -57,7 +81,7 @@
                 console.log(data.items[i]);
                 name = data.items[i].author.displayName;
                 console.log(name);
-                myDiv.innerHTML += data.items[i].content ;
+                myDiv.innerHTML += '<div class="blog-entry" id="blog-entry-'+i+'">'+data.items[i].content+'</div>' ;
 //                myDiv.innerHTML += '<div class="blog-entry" id="blog-'+i+'">' + 'By: '  ;
             }
 
